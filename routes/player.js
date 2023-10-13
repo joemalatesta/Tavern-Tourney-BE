@@ -1,15 +1,16 @@
 import { Router } from 'express'
 import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
-import * as profilesCtrl from '../controllers/profiles.js'
+import * as playerCtrl from '../controllers/player.js'
 
 const router = Router()
 
 /*---------- Public Routes ----------*/
 
+router.get('/', playerCtrl.index)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get('/', checkAuth, profilesCtrl.index)
-router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
-
+router.post('/', checkAuth, playerCtrl.create)
+router.delete('/:id', checkAuth, playerCtrl.delete)
+router.put('/:id', checkAuth, playerCtrl.update)
 export { router }
