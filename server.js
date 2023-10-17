@@ -12,6 +12,8 @@ import './config/database.js'
 import { router as profilesRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as playerRouter } from './routes/player.js'
+import { router as matchRouter } from './routes/match.js'
+
 // create the express app
 const app = express()
 
@@ -25,6 +27,7 @@ app.use(formData.parse())
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/player', playerRouter)
+app.use('/api/match', matchRouter)
 
 // handle 404 errors
 app.use(function (req, res, next) {
