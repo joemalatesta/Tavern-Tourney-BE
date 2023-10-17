@@ -10,6 +10,17 @@ async function index(req, res) {
   }
 }
 
+async function findOne(req, res) {
+  console.log(req.params);
+  try {
+    const player = await Player.findById(req.params.id)
+    res.json(player)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
 function create(req, res) {
 
   req.body.owner = req.user.profile
@@ -72,5 +83,6 @@ export {
   create,
   index,
   deleteOne as delete,
-  update
+  update,
+  findOne
 }

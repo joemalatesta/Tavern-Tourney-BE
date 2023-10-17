@@ -7,11 +7,11 @@ const router = Router()
 /*---------- Public Routes ----------*/
 
 
+router.get('/', matchCtrl.index)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, matchCtrl.create)
-router.get('/', checkAuth, matchCtrl.index)
 
 
 export { router }
