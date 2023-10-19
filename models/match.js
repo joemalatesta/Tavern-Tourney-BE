@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const matchSchema = new Schema({
   name: { type: String, unique: true },
   gameType: String,
-  players: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Player' }],
+  matchPlayers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Player' }],
+  bracketTier: Array
 }, {
   timestamps: true,
 });

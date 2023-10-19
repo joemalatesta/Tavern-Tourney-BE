@@ -11,7 +11,7 @@ async function index(req, res) {
 }
 
 function create(req, res) {
-  
+  console.log(req.body);
   Match.create(req.body)
   .then(match => {
     Match.findById(match._id)
