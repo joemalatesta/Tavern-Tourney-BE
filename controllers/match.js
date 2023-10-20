@@ -11,7 +11,7 @@ async function index(req, res) {
 }
 
 function create(req, res) {
-  console.log(req.body);
+  req.body.owner = req.user.profile
   Match.create(req.body)
   .then(match => {
     Match.findById(match._id)
@@ -44,8 +44,27 @@ function update(req, res) {
   })
 }
 
+
+function deleteOne(req, res) {
+  console.log();
+  Match.findById(req.params.id)
+  .then(match => {
+    
+  
+      Match.findByIdAndDelete(match._id)
+      .then(deletedMatch => {
+        res.json(deletedMatch)
+      })
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
 export {
   index,
   create,
-  update
+  update,
+  deleteOne
 }

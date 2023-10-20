@@ -13,5 +13,5 @@ router.get('/', matchCtrl.index)
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, matchCtrl.create)
 router.put('/:id', checkAuth, matchCtrl.update)
-
+router.delete('/:id', checkAuth, matchCtrl.deleteOne)
 export { router }
