@@ -8,6 +8,7 @@ const matchSchema = new Schema({
   matchPlayers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Player' }],
   rounds: Array,
   loserRounds: Array,
+  doubleElim: Boolean,
   owner: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
 }, {
   timestamps: true,
