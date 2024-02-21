@@ -9,6 +9,7 @@ const matchSchema = new Schema({
   rounds: Array,
   loserRounds: Array,
   doubleElim: Boolean,
+  handicap: Boolean,
   owner: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
 }, {
   timestamps: true,
