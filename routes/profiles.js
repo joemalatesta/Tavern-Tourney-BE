@@ -6,6 +6,7 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 
+router.get('/:id', profilesCtrl.findOne)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)

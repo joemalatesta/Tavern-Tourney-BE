@@ -11,4 +11,15 @@ async function index(req, res) {
   }
 }
 
-export { index}
+async function findOne(req, res) {
+  console.log(req.params);
+  try {
+    const profile = await Profile.findById(req.params.id)
+    res.json(profile)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+export { index, findOne}
