@@ -11,5 +11,5 @@ router.get('/:id', profilesCtrl.findOne)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, profilesCtrl.index)
-
+router.put('/:id', checkAuth, profilesCtrl.update)
 export { router }

@@ -22,4 +22,18 @@ async function findOne(req, res) {
   }
 }
 
-export { index, findOne}
+function update(req, res) {
+  Profile.findById(req.params.id)
+  .then(profile => {
+      Profile.findByIdAndUpdate(req.params.id, req.body, {new: true})
+      .then(updatedProfile => {
+        res.json(updatedProfile)
+      }) 
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
+export { index, findOne, update }
