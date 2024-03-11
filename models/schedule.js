@@ -7,6 +7,8 @@ const scheduleSchema = new Schema({
   matches: Array,
   bye: Object,
   owner: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
+  matchesforApproval: Array,
+  ApprovedMatches: Array,
 }, {
   timestamps: true,
 });

@@ -6,8 +6,8 @@ const playerSchema = new Schema({
   name: {type: String , unique: true},
   rank: Number,
   matchesPlayed: Number,
-  matchWin: Number,
-  matchLoss: Number,
+  matchWin: {type: Number, default: 0 },
+  matchLoss: {type: Number, default: 0 },
   owner: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
 },{
   timestamps: true,

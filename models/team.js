@@ -6,8 +6,8 @@ const teamSchema = new Schema({
   teamName: { type: String, unique: true },
   teamPlayers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Player' }],
   teamCaptain: String,
-  wins: Number,
-  loss: Number
+  wins: {type:Number, default: 0, min:0},
+  loss: {type:Number, default: 0, min:0},
 }, {
   timestamps: true,
 });
