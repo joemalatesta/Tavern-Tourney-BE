@@ -15,6 +15,8 @@ function create(req, res) {
   Team.create(req.body)
   .then(team => {
     Team.findById(team._id)
+    .populate('teamPlayers')
+    .exec()
     .then(populatedTeam => {
       res.json(populatedTeam)
     })
@@ -26,21 +28,17 @@ function create(req, res) {
 }
 
 function update(req, res) {
+  console.log(req.params)
   Team.findById(req.params.id)
   .then(team => {
-    if (team.owner._id.equals(req.user.profile)) {
       Team.findByIdAndUpdate(req.params.id, req.body, {new: true})
-      .populate('owner')
       .then(updatedTeam => {
         res.json(updatedTeam)
       })
-    } else {
-      res.status(401).json({err: "Not authorized!"})
-    }
   })
   .catch(err => {
-    console.log(err)
-    res.status(500).json({err: err.errmsg})
+    console.error(err);
+    res.status(500).json({ err: err.message });
   })
 }
 

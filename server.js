@@ -15,6 +15,7 @@ import { router as playerRouter } from './routes/player.js'
 import { router as matchRouter } from './routes/match.js'
 import { router as teamRouter } from './routes/team.js'
 import { router as scheduleRouter } from './routes/schedule.js'
+import { router as playedMatchRouter } from './routes/playedMatch.js'
 
 // create the express app
 const app = express()
@@ -32,6 +33,7 @@ app.use('/api/player', playerRouter)
 app.use('/api/match', matchRouter)
 app.use('/api/team', teamRouter)
 app.use('/api/schedule', scheduleRouter)
+app.use('/api/playedMatch', playedMatchRouter)
 
 // handle 404 errors
 app.use(function (req, res, next) {

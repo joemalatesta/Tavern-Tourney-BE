@@ -13,6 +13,6 @@ router.get('/:id', teamCtrl.findOne)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, teamCtrl.create)
-router.put('/:id', checkAuth, teamCtrl.update)
+router.put('/:id', teamCtrl.update)
 router.delete('/:id', checkAuth, teamCtrl.deleteOne)
 export { router }

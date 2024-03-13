@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const playerSchema = new Schema({
   name: {type: String , unique: true},
-  rank: Number,
+  rank: {type:Number, default: 50, min:1},
   matchesPlayed: Number,
   matchWin: {type: Number, default: 0 },
   matchLoss: {type: Number, default: 0 },

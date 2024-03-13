@@ -12,6 +12,6 @@ router.get('/', scheduleCtrl.index)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, scheduleCtrl.create)
-router.put('/:id', checkAuth, scheduleCtrl.update)
+router.put('/:id', scheduleCtrl.update)
 router.delete('/:id', checkAuth, scheduleCtrl.deleteOne)
 export { router }

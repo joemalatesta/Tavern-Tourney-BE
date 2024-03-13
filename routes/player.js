@@ -13,5 +13,5 @@ router.get('/:id', playerCtrl.findOne)
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, playerCtrl.create)
 router.delete('/:id', checkAuth, playerCtrl.delete)
-router.put('/:id', checkAuth, playerCtrl.update)
+router.put('/:id', playerCtrl.update)
 export { router }

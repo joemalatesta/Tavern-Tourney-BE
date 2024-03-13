@@ -63,16 +63,11 @@ function deleteOne(req, res) {
 function update(req, res) {
   Player.findById(req.params.id)
   .then(player => {
-    if (player.owner._id.equals(req.user.profile)) {
-      Player.findByIdAndUpdate(req.params.id, req.body, {new: true})
-      .populate('owner')
-      .then(updatedPlayer => {
-        res.json(updatedPlayer)
-      })
-    } else {
-      res.status(401).json({err: "Not authorized!"})
-    }
-  })
+    Player.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(updatedPlayer => {
+      res.json(updatedPlayer)
+    })
+})
   .catch(err => {
     console.log(err)
     res.status(500).json({err: err.errmsg})
