@@ -14,7 +14,6 @@ const playedMatchSchema = new Schema({
   losingPlayer: Object,
   winnerGamesPlayed: Number,
   loserGamesPlayed: Number,
-
 },{
   timestamps: true,
 })
