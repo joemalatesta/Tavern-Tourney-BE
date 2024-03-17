@@ -9,7 +9,8 @@ const triMatchSchema = new Schema({
   visitingTeam: Object,
   match1: Object,
   match2: Object,
-  match3: Object
+  match3: Object,
+  submittedBy: String
 },{
   timestamps: true,
 })
