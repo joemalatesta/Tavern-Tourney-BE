@@ -1,6 +1,5 @@
 import { Profile } from '../models/profile.js'
 
-
 async function index(req, res) {
   try {
     const profiles = await Profile.find({})

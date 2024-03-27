@@ -14,4 +14,5 @@ router.use(decodeUserFromToken)
 router.post('/', checkAuth, playerCtrl.create)
 router.delete('/:id', checkAuth, playerCtrl.delete)
 router.put('/:id', playerCtrl.update)
+
 export { router }

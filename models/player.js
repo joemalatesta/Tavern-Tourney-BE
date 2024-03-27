@@ -5,10 +5,10 @@ const Schema = mongoose.Schema
 const playerSchema = new Schema({
   name: {type: String , unique: true},
   rank: {type:Number, default: 50, min:1},
-  matchesPlayed: Number,
+  matchesPlayed: {type: Number, default: 0 },
   matchWin: {type: Number, default: 0 },
   matchLoss: {type: Number, default: 0 },
-  owner: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
+  profile: { type: Schema.Types.ObjectId, ref: 'Profile' , default: null},
 },{
   timestamps: true,
 })

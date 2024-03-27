@@ -9,7 +9,7 @@ import formData from 'express-form-data'
 import './config/database.js'
 
 // import routes
-import { router as profilesRouter } from './routes/profiles.js'
+import { router as profileRouter } from './routes/profile.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as playerRouter } from './routes/player.js'
 import { router as matchRouter } from './routes/match.js'
@@ -27,7 +27,7 @@ app.use(express.json())
 app.use(formData.parse())
 
 // mount imported routes
-app.use('/api/profiles', profilesRouter)
+app.use('/api/profile', profileRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/player', playerRouter)
 app.use('/api/match', matchRouter)
