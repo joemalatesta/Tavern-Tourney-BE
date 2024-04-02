@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const scheduleSchema = new Schema({
   name: String,
+  completed: {type: Boolean, default: false},
   matches: Array,
   bye: Object,
   owner: {type: mongoose.Schema.Types.ObjectId, ref: "Profile"},
