@@ -10,7 +10,8 @@ const triMatchSchema = new Schema({
   match1: Object,
   match2: Object,
   match3: Object,
-  submittedBy: String
+  submittedBy: String,
+  completed: {type: Boolean, default: false}
 },{
   timestamps: true,
 })

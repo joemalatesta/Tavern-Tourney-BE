@@ -6,6 +6,7 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema({
   email: { type: String, required: true, lowercase: true },
+  email2: { type: String, required: true, lowercase: true},
   password: String,
   profile: { type: Schema.Types.ObjectId, ref: 'Profile' },
 }, {

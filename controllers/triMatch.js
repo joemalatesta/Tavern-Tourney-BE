@@ -26,17 +26,12 @@ function create(req, res) {
 }
 
 function update(req, res) {
-  TextMetricsMatch.findById(req.params.id)
+  TriMatch.findById(req.params.id)
   .then(match => {
-    if (match.owner._id.equals(req.user.profile)) {
       TriMatch.findByIdAndUpdate(req.params.id, req.body, {new: true})
-      .populate('owner')
       .then(updatedMatch => {
         res.json(updatedMatch)
       })
-    } else {
-      res.status(401).json({err: "Not authorized!"})
-    }
   })
   .catch(err => {
     console.log(err)
