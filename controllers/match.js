@@ -13,58 +13,48 @@ async function index(req, res) {
 function create(req, res) {
   req.body.owner = req.user.profile
   Match.create(req.body)
-  .then(match => {
-    Match.findById(match._id)
-    .then(populatedMatch => {
-      res.json(populatedMatch)
+    .then((match) => {
+      Match.findById(match._id).then((populatedMatch) => {
+        res.json(populatedMatch)
+      })
     })
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({err: err.errmsg})
-  })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json({ err: err.errmsg })
+    })
 }
 
 function update(req, res) {
   Match.findById(req.params.id)
-  .then(match => {
-    if (match.owner._id.equals(req.user.profile)) {
-      Match.findByIdAndUpdate(req.params.id, req.body, {new: true})
-      .populate('owner')
-      .then(updatedMatch => {
-        res.json(updatedMatch)
-      })
-    } else {
-      res.status(401).json({err: "Not authorized!"})
-    }
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({err: err.errmsg})
-  })
+    .then((match) => {
+      if (match.owner._id.equals(req.user.profile)) {
+        Match.findByIdAndUpdate(req.params.id, req.body, { new: true })
+          .populate("owner")
+          .then((updatedMatch) => {
+            res.json(updatedMatch)
+          })
+      } else {
+        res.status(401).json({ err: "Not authorized!" })
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json({ err: err.errmsg })
+    })
 }
-
 
 function deleteOne(req, res) {
-  console.log();
+  console.log()
   Match.findById(req.params.id)
-  .then(match => {
-    
-  
-      Match.findByIdAndDelete(match._id)
-      .then(deletedMatch => {
+    .then((match) => {
+      Match.findByIdAndDelete(match._id).then((deletedMatch) => {
         res.json(deletedMatch)
       })
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({err: err.errmsg})
-  })
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json({ err: err.errmsg })
+    })
 }
 
-export {
-  index,
-  create,
-  update,
-  deleteOne
-}
+export { index, create, update, deleteOne }

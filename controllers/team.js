@@ -13,53 +13,52 @@ async function index(req, res) {
 function create(req, res) {
   req.body.owner = req.user.profile
   Team.create(req.body)
-  .then(team => {
-    Team.findById(team._id)
-    .populate('teamPlayers')
-    .exec()
-    .then(populatedTeam => {
-      res.json(populatedTeam)
+    .then((team) => {
+      Team.findById(team._id)
+        .populate("teamPlayers")
+        .exec()
+        .then((populatedTeam) => {
+          res.json(populatedTeam)
+        })
     })
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({err: err.errmsg})
-  })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json({ err: err.errmsg })
+    })
 }
 
 function update(req, res) {
   console.log(req.params)
   Team.findById(req.params.id)
-  .then(team => {
-      Team.findByIdAndUpdate(req.params.id, req.body, {new: true})
-      .then(updatedTeam => {
-        res.json(updatedTeam)
-      })
-  })
-  .catch(err => {
-    console.error(err);
-    res.status(500).json({ err: err.message });
-  })
+    .then((team) => {
+      Team.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(
+        (updatedTeam) => {
+          res.json(updatedTeam)
+        }
+      )
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).json({ err: err.message })
+    })
 }
 
-
 function deleteOne(req, res) {
-  console.log();
+  console.log()
   Team.findById(req.params.id)
-  .then(team => {
-      Team.findByIdAndDelete(team._id)
-      .then(deletedTeam => {
+    .then((team) => {
+      Team.findByIdAndDelete(team._id).then((deletedTeam) => {
         res.json(deletedTeam)
       })
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json({err: err.errmsg})
-  })
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json({ err: err.errmsg })
+    })
 }
 
 async function findOne(req, res) {
-  console.log(req.params);
+  console.log(req.params)
   try {
     const team = await Team.findById(req.params.id)
     res.json(team)
@@ -69,10 +68,4 @@ async function findOne(req, res) {
   }
 }
 
-export {
-  index,
-  create,
-  update,
-  deleteOne,
-  findOne
-}
+export { index, create, update, deleteOne, findOne }

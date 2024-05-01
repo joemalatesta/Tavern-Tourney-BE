@@ -1,43 +1,43 @@
 // npm packages
-import 'dotenv/config.js'
-import express from 'express'
-import logger from 'morgan'
-import cors from 'cors'
-import formData from 'express-form-data'
+import "dotenv/config.js"
+import express from "express"
+import logger from "morgan"
+import cors from "cors"
+import formData from "express-form-data"
 
 // connect to MongoDB with mongoose
-import './config/database.js'
+import "./config/database.js"
 
 // import routes
-import { router as profileRouter } from './routes/profile.js'
-import { router as authRouter } from './routes/auth.js'
-import { router as playerRouter } from './routes/player.js'
-import { router as matchRouter } from './routes/match.js'
-import { router as teamRouter } from './routes/team.js'
-import { router as scheduleRouter } from './routes/schedule.js'
-import { router as triMatchRouter } from './routes/triMatch.js'
+import { router as profileRouter } from "./routes/profile.js"
+import { router as authRouter } from "./routes/auth.js"
+import { router as playerRouter } from "./routes/player.js"
+import { router as matchRouter } from "./routes/match.js"
+import { router as teamRouter } from "./routes/team.js"
+import { router as sessionRouter } from "./routes/session.js"
+import { router as tableRouter } from "./routes/table.js"
 
 // create the express app
 const app = express()
 
 // basic middleware
 app.use(cors())
-app.use(logger('dev'))
+app.use(logger("dev"))
 app.use(express.json())
 app.use(formData.parse())
 
 // mount imported routes
-app.use('/api/profile', profileRouter)
-app.use('/api/auth', authRouter)
-app.use('/api/player', playerRouter)
-app.use('/api/match', matchRouter)
-app.use('/api/team', teamRouter)
-app.use('/api/schedule', scheduleRouter)
-app.use('/api/triMatch', triMatchRouter)
+app.use("/api/profile", profileRouter)
+app.use("/api/auth", authRouter)
+app.use("/api/player", playerRouter)
+app.use("/api/match", matchRouter)
+app.use("/api/team", teamRouter)
+app.use("/api/session", sessionRouter)
+app.use("/api/table", tableRouter)
 
 // handle 404 errors
-app.use(function (req, res, next) {
-  res.status(404).json({ err: 'Not found' })
+app.use(function (err, req, res, next) {
+  res.status(404).json({ err: err.message })
 })
 
 // handle all other errors

@@ -1,28 +1,31 @@
-import mongoose from 'mongoose'
-import bcrypt from 'bcrypt'
+import mongoose from "mongoose"
+import bcrypt from "bcrypt"
 
 const saltRounds = 6
 const Schema = mongoose.Schema
 
-const userSchema = new Schema({
-  email: { type: String, required: true, lowercase: true },
-  email2: { type: String, required: true, lowercase: true},
-  password: String,
-  profile: { type: Schema.Types.ObjectId, ref: 'Profile' },
-}, {
-  timestamps: true,
-})
+const userSchema = new Schema(
+  {
+    email: { type: String, required: true, lowercase: true },
+    email2: { type: String, required: true, lowercase: true },
+    password: String,
+    profile: { type: Schema.Types.ObjectId, ref: "Profile" },
+  },
+  {
+    timestamps: true,
+  }
+)
 
-userSchema.set('toJSON', {
+userSchema.set("toJSON", {
   transform: function (doc, ret) {
     delete ret.password
     return ret
-  }
+  },
 })
 
-userSchema.pre('save', async function (next) {
+userSchema.pre("save", async function (next) {
   const user = this
-  if (!user.isModified('password')) return next()
+  if (!user.isModified("password")) return next()
 
   try {
     const hash = await bcrypt.hash(user.password, saltRounds)
@@ -37,6 +40,6 @@ userSchema.methods.comparePassword = async function (tryPassword) {
   return await bcrypt.compare(tryPassword, this.password)
 }
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model("User", userSchema)
 
 export { User }

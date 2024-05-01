@@ -1,15 +1,17 @@
 import { Router } from "express"
 import { decodeUserFromToken, checkAuth } from "../middleware/auth.js"
-import * as profileCtrl from "../controllers/profile.js"
+import * as sessionCtrl from "../controllers/session.js"
 
 const router = Router()
 
 /*---------- Public Routes ----------*/
 
-router.get("/:id", profileCtrl.findOne)
+router.get("/", sessionCtrl.index)
+router.get("/:id", sessionCtrl.findOne)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get("/", checkAuth, profileCtrl.index)
-router.put("/:id", checkAuth, profileCtrl.update)
+router.post("/", sessionCtrl.create)
+router.put("/:id", sessionCtrl.update)
+router.delete("/:id", checkAuth, sessionCtrl.deleteOne)
 export { router }
