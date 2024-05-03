@@ -2,7 +2,7 @@ import { Table } from "../models/table.js"
 
 async function index(req, res) {
   try {
-    const table = await Table.find({})
+    const table = await Table.find({}).populate(["match1","match2","match3"])
     res.json(table)
   } catch (err) {
     console.log(err)
@@ -10,9 +10,25 @@ async function index(req, res) {
   }
 }
 
+
+// async function index(req, res) {
+//   try {
+//     const schedule = await Session.find({}).populate([
+//       "table1",
+//       "table2",
+//       "table3",
+//       "table4",
+//     ])
+//     res.json(schedule)
+//   } catch (err) {
+//     console.log(err)
+//     res.status(500).json(err)
+//   }
+// }
+
 async function findOne(req, res) {
   try {
-    const table = await Table.findById(req.params.id)
+    const table = await Table.findById(req.params.id).populate(["match1","match2","match3"])
     res.json(table)
   } catch (err) {
     console.log(err)

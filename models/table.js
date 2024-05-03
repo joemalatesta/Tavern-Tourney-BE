@@ -12,13 +12,11 @@ const tableSchema = new Schema(
     homeTeam: Object,
     awayTeam: Object,
     completed: { type: Boolean, default: false },
-    matches: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Match",
-        validate: validateMatchesLength,
-      },
-    ],
+    match1: {type: mongoose.Schema.Types.ObjectId, ref: "Match", default: null},
+    match2: {type: mongoose.Schema.Types.ObjectId, ref: "Match", default: null},
+    match3: {type: mongoose.Schema.Types.ObjectId, ref: "Match", default: null},
+    homeApproval: String,
+    awayApproval: String
   },
   {
     timestamps: true,
