@@ -27,15 +27,11 @@ function create(req, res) {
 function update(req, res) {
   Match.findById(req.params.id)
     .then((match) => {
-      if (match.owner._id.equals(req.user.profile)) {
+
         Match.findByIdAndUpdate(req.params.id, req.body, { new: true })
-          .populate("owner")
           .then((updatedMatch) => {
             res.json(updatedMatch)
           })
-      } else {
-        res.status(401).json({ err: "Not authorized!" })
-      }
     })
     .catch((err) => {
       console.log(err)
@@ -57,4 +53,14 @@ function deleteOne(req, res) {
     })
 }
 
-export { index, create, update, deleteOne }
+async function findOne(req, res) {
+  try {
+    const match = await Match.findById(req.params.id)
+    res.json(match)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+export { index, create, update, deleteOne, findOne }
