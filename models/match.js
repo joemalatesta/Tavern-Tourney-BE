@@ -9,10 +9,8 @@ const matchSchema = new Schema(
     completed: { type: Boolean, default: false },
     winningTeam: { type: Object, default: {} },
     losingTeam: { type: Object, default: {} },
-    player1GamesWon: { type: Number, default: 0 },
-    player2GamesWon: { type: Number, default: 0 },
-    player1Wins: { type: Object, default: {} },
-    player2Wins: { type: Object, default: {} },
+    player1Wins: { type: Array, default: null },
+    player2Wins: { type: Array, default: null },
   },
   {
     timestamps: true,
