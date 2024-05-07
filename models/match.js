@@ -11,6 +11,8 @@ const matchSchema = new Schema(
     losingTeam: { type: Object, default: {} },
     player1Wins: { type: Array, default: [] },
     player2Wins: { type: Array, default: [] },
+    winningPlayer: { type: Object, default: {} },
+    losingPlayer: { type: Object, default: {} },
   },
   {
     timestamps: true,
