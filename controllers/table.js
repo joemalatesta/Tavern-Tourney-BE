@@ -2,7 +2,7 @@ import { Table } from "../models/table.js"
 
 async function index(req, res) {
   try {
-    const table = await Table.find({}).populate(["match1","match2","match3"])
+    const table = await Table.find({}).populate(["match1","match2","match3", "homeTeamApproval", "awayTeamApproval"])
     res.json(table)
   } catch (err) {
     console.log(err)
@@ -10,25 +10,9 @@ async function index(req, res) {
   }
 }
 
-
-// async function index(req, res) {
-//   try {
-//     const schedule = await Session.find({}).populate([
-//       "table1",
-//       "table2",
-//       "table3",
-//       "table4",
-//     ])
-//     res.json(schedule)
-//   } catch (err) {
-//     console.log(err)
-//     res.status(500).json(err)
-//   }
-// }
-
 async function findOne(req, res) {
   try {
-    const table = await Table.findById(req.params.id).populate(["match1","match2","match3"])
+    const table = await Table.findById(req.params.id).populate(["match1","match2","match3", "homeTeamApproval", "awayTeamApproval"])
     res.json(table)
   } catch (err) {
     console.log(err)
@@ -48,7 +32,7 @@ async function create(req, res) {
 }
 
 function deleteOne(req, res) {
-  Table.findById(req.params.id)
+  Table.findById(req.params.id).populate(["match1","match2","match3", "homeTeamApproval", "awayTeamApproval"])
     .then((table) => {
       Table.findByIdAndDelete(table._id).then((deletedTable) => {
         res.json(deletedTable)
@@ -61,7 +45,7 @@ function deleteOne(req, res) {
 }
 
 function update(req, res) {
-  Table.findById(req.params.id)
+  Table.findById(req.params.id).populate(["match1","match2","match3", "homeTeamApproval", "awayTeamApproval"])
     .then((table) => {
       Table.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(
         (updatedTable) => {

@@ -13,6 +13,7 @@ const matchSchema = new Schema(
     player2Wins: { type: Array, default: [] },
     winningPlayer: { type: Object, default: {} },
     losingPlayer: { type: Object, default: {} },
+
   },
   {
     timestamps: true,
