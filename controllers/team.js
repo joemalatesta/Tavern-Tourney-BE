@@ -60,7 +60,7 @@ function deleteOne(req, res) {
 async function findOne(req, res) {
   console.log(req.params)
   try {
-    const team = await Team.findById(req.params.id)
+    const team = await Team.findById(req.params.id).populate("teamPlayers")
     res.json(team)
   } catch (err) {
     console.log(err)

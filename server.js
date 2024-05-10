@@ -16,6 +16,7 @@ import { router as matchRouter } from "./routes/match.js"
 import { router as teamRouter } from "./routes/team.js"
 import { router as sessionRouter } from "./routes/session.js"
 import { router as tableRouter } from "./routes/table.js"
+import { router as triMatchRouter } from "./routes/triMatch.js"
 
 // create the express app
 const app = express()
@@ -34,6 +35,7 @@ app.use("/api/match", matchRouter)
 app.use("/api/team", teamRouter)
 app.use("/api/session", sessionRouter)
 app.use("/api/table", tableRouter)
+app.use("/api/triMatch", triMatchRouter)
 
 // handle 404 errors
 app.use(function (err, req, res, next) {
