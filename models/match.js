@@ -7,12 +7,11 @@ const matchSchema = new Schema(
     player1: { type: Object, default: {} },
     player2: { type: Object, default: {} },
     completed: { type: Boolean, default: false },
-    winningTeam: { type: Object, default: {} },
-    losingTeam: { type: Object, default: {} },
+    submitted: { type: Boolean, default: false },
     player1Wins: { type: Array, default: [] },
     player2Wins: { type: Array, default: [] },
-    winningPlayer: { type: Object, default: {} },
-    losingPlayer: { type: Object, default: {} },
+    winningPlayer: { type: Object, default: null },
+    losingPlayer: { type: Object, default: null }
   },
   {
     timestamps: true,
