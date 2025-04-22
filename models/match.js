@@ -8,8 +8,10 @@ const matchSchema = new Schema(
     player2: { type: Object, default: {} },
     completed: { type: Boolean, default: false },
     submitted: { type: Boolean, default: false },
-    player1Wins: { type: Array, default: [] },
-    player2Wins: { type: Array, default: [] },
+    player1WinsHome: { type: Array, default: [] },
+    player2WinsHome: { type: Array, default: [] },
+    player1WinsAway: { type: Array, default: [] },
+    player2WinsAway: { type: Array, default: [] },
     winningPlayer: { type: Object, default: null },
     losingPlayer: { type: Object, default: null }
   },

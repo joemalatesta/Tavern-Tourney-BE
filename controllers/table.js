@@ -2,7 +2,7 @@ import { Table } from "../models/table.js";
 
 async function index(req, res) {
   try {
-    const table = await Table.find({}).populate(["awayMatch1","awayMatch2","awayMatch3","homeMatch1","homeMatch2","homeMatch3", "homeTeamApproval", "awayTeamApproval"])
+    const table = await Table.find({}).populate(["match1","match2", "match3", "homeTeamApproval", "awayTeamApproval"])
     res.json(table);
   } catch (err) {
     console.log(err);
@@ -12,7 +12,7 @@ async function index(req, res) {
 
 async function findOne(req, res) {
   try {
-    const table = await Table.findById(req.params.id).populate(["awayMatch1","awayMatch2","awayMatch3","homeMatch1","homeMatch2","homeMatch3", "homeTeamApproval", "awayTeamApproval"])
+    const table = await Table.findById(req.params.id).populate(["match1", "match2", "match3"])
     res.json(table);
   } catch (err) {
     console.log(err);
@@ -45,7 +45,7 @@ function deleteOne(req, res) {
 }
 
 function update(req, res) {
-  Table.findById(req.params.id).populate(["awayMatch1","awayMatch2","awayMatch3","homeMatch1","homeMatch2","homeMatch3", "homeTeamApproval", "awayTeamApproval"])
+  Table.findById(req.params.id).populate(["match1", "match2", "match3", "homeTeamApproval", "awayTeamApproval"])
     .then((table) => {
       Table.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(
         (updatedTable) => {
