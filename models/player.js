@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 
 const playerSchema = new Schema(
   {
-    name: { type: String, unique: true },
+    nameFirst: { type: String },
+    nameLast: { type: String },
     seasonRankStart: { type: Number },
     rank: { type: Number, default: 50, min: 1 },
     matchesPlayed: { type: Number, default: 0 },
@@ -13,6 +14,7 @@ const playerSchema = new Schema(
     gamesWon: { type: Number, default: 0 },
     gamesLoss: { type: Number, default: 0 },
     profile: { type: Schema.Types.ObjectId, ref: "Profile", default: null },
+    active: {type: Boolean, default: true },
   },
   {
     timestamps: true,
