@@ -9,6 +9,7 @@ const teamSchema = new Schema(
     teamCaptain: String,
     wins: { type: Number, default: 0, min: 0 },
     loss: { type: Number, default: 0, min: 0 },
+    active: { type: Boolean }
   },
   {
     timestamps: true,

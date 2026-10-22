@@ -20,6 +20,7 @@ const tableSchema = new Schema(
     match3Completed: {type: Boolean, default: false},
     homeTeamApproval: { type: Schema.Types.ObjectId, ref: "Profile", default: null },
     awayTeamApproval: { type: Schema.Types.ObjectId, ref: "Profile", default: null },
+    approval: { type: Boolean, default: false},
   },
   {
     timestamps: true,
