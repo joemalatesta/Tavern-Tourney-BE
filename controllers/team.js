@@ -27,20 +27,46 @@ function create(req, res) {
     })
 }
 
-function update(req, res) {
-  console.log(req.params)
-  Team.findById(req.params.id)
-    .then((team) => {
-      Team.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(
-        (updatedTeam) => {
-          res.json(updatedTeam)
-        }
-      )
+async function update(req, res) {
+  try {
+    console.log("Updating team ID:", req.params.id)
+    console.log("Update request body:", req.body)
+    console.log("Database name:", Team.db.name)
+    console.log("Team collection:", Team.collection.name)
+    console.log("Requested team ID:", req.params.id)
+
+    const existingTeam = await Team.findById(req.params.id)
+
+    console.log("Team found before update:", existingTeam)
+
+    const updatedTeam = await Team.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
     })
-    .catch((err) => {
-      console.error(err)
-      res.status(500).json({ err: err.message })
+
+    if (!updatedTeam) {
+      console.error("Team not found:", req.params.id)
+      return res.status(404).json({
+        message: "Team not found",
+        teamId: req.params.id,
+      })
+    }
+
+    console.log("Updated team in database:", {
+      teamName: updatedTeam.teamName,
+      wins: updatedTeam.wins,
+      loss: updatedTeam.loss,
     })
+
+    return res.status(200).json(updatedTeam)
+  } catch (err) {
+    console.error("Team update failed:", err)
+
+    return res.status(500).json({
+      message: "Failed to update team",
+      error: err.message,
+    })
+  }
 }
 
 function deleteOne(req, res) {
@@ -72,8 +98,7 @@ async function findOne(req, res) {
   console.log("TEAM FIND ONE ID:", req.params.id)
 
   try {
-    const team = await Team.findById(req.params.id)
-      .populate("teamPlayers")
+    const team = await Team.findById(req.params.id).populate("teamPlayers")
 
     console.log("TEAM FIND ONE RESULT:", team)
 
